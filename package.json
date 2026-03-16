@@ -1,0 +1,10 @@
+{
+  "name": "n8n-ultimate-server",
+  "version": "1.0.0",
+  "description": "Ultimate n8n automation server with Postiz and media tools",
+  "dependencies": {
+    "n8n-nodes-base64": "*",
+    "n8n-nodes-ffmpeg": "*",
+    "n8n-nodes-python": "*"
+  }
+}

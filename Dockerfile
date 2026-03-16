@@ -1,6 +1,4 @@
-FROM n8nio/n8n:latest
-
-USER root
+FROM node:18-bullseye
 
 # install system tools
 RUN apt-get update && apt-get install -y \
@@ -33,6 +31,9 @@ RUN pip3 install \
     numpy \
     pillow
 
+# install n8n
+RUN npm install -g n8n
+
 # install Postiz
 RUN npm install -g postiz
 
@@ -49,6 +50,6 @@ WORKDIR /data
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
-USER node
+EXPOSE 5678
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

@@ -3,10 +3,10 @@ FROM n8nio/n8n:latest
 USER root
 
 # install system tools
-RUN apk update && apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     ffmpeg \
     python3 \
-    py3-pip \
+    python3-pip \
     git \
     curl \
     jq \
@@ -14,19 +14,15 @@ RUN apk update && apk add --no-cache \
     ghostscript \
     tesseract-ocr \
     chromium \
-    nss \
-    freetype \
-    harfbuzz \
+    fonts-freefont-ttf \
     ca-certificates \
-    ttf-freefont \
     bash \
-    nodejs \
-    npm
+    && rm -rf /var/lib/apt/lists/*
 
 # install yt-dlp
-RUN pip3 install --no-cache-dir yt-dlp
+RUN pip3 install yt-dlp
 
-# install playwright for scraping
+# install playwright
 RUN pip3 install playwright && playwright install chromium
 
 # install python libraries
@@ -46,7 +42,6 @@ RUN npm install -g \
     n8n-nodes-python \
     n8n-nodes-base64
 
-# allow community nodes
 ENV N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE=true
 
 WORKDIR /data

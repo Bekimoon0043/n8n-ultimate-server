@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Starting Automation Server..."
+echo "Starting automation server..."
 
 # start postiz
 postiz &

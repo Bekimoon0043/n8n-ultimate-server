@@ -1,4 +1,4 @@
-FROM node:18-bullseye
+FROM node:20-bookworm
 
 # install system tools
 RUN apt-get update && apt-get install -y \
@@ -23,7 +23,7 @@ RUN pip3 install yt-dlp
 # install playwright
 RUN pip3 install playwright && playwright install chromium
 
-# install python libraries
+# install useful python libraries
 RUN pip3 install \
     requests \
     beautifulsoup4 \
@@ -36,12 +36,6 @@ RUN npm install -g n8n
 
 # install Postiz
 RUN npm install -g postiz
-
-# install community nodes
-RUN npm install -g \
-    n8n-nodes-ffmpeg \
-    n8n-nodes-python \
-    n8n-nodes-base64
 
 ENV N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE=true
 

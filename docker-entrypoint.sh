@@ -1,8 +1,9 @@
 #!/bin/sh
 
-echo "Starting Ultimate Automation Server..."
+echo "Starting Automation Server..."
 
-n8n &
+# start postiz
 postiz &
 
-wait
+# start n8n
+n8n
